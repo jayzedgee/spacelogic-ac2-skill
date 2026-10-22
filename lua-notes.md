@@ -1,5 +1,7 @@
 # AC2 Lua notes
 
+**`storage.get` also returns two values.** Same fix: `tonumber((storage.get(key, 0)))`. Plain assignment (`local q = storage.get(k)`) is fine; only passing it straight into another call breaks.
+
 **`grp.getvalue` returns two values.** Always wrap it: `tonumber((grp.getvalue(addr)))`. Without the extra parentheses, `tonumber(a, b)` treats the second value as a base and the script fails with "bad argument #2 to 'tonumber'".
 
 **Event scripts fire on every telegram**, including repeats of the same value and writes made by scripts. Test the value (for example, act only when it is non-zero) and the destination (`event.dst`) yourself.
